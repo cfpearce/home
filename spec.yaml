@@ -3,7 +3,7 @@ name: home
 region: lon
 services:
     - name: home
-      dockerfile_path: Dockerfile
+      dockerfile_path: ./docker/Dockerfile
       source_dir: .
       github:
           branch: main
