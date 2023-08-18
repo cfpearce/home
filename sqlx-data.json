@@ -1,0 +1,43 @@
+{
+  "db": "SQLite",
+  "51690e2c6034d7222b1277eb355b57061e9f44401c3e9e9347cbc1d2a77d8007": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 2
+      }
+    },
+    "query": "\n            insert into subscriptions(email, name)\n            values( $1, $2 )\n        "
+  },
+  "fad5a1964238128a548d67c556022281e4858b6a249aec96e224f01b21da6432": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int64"
+        },
+        {
+          "name": "email",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 2,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 0
+      }
+    },
+    "query": "\n            select\n                id,\n                email,\n                name\n            from\n                subscriptions\n        "
+  }
+}

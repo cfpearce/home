@@ -1,0 +1,1 @@
+docker run --network host -p 8000:8000 home
