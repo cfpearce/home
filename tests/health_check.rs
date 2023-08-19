@@ -3,7 +3,10 @@ use std::net::TcpListener;
 use sqlx::SqlitePool;
 
 use home::telemetry::{get_subscriber, init_subscriber};
-use home::{configuration::get_configuration, configuration::DatabaseSettings, startup::run};
+use home::{
+    configuration::get_configuration, configuration::DatabaseSettings,
+    startup::run,
+};
 
 use once_cell::sync::Lazy;
 
@@ -38,15 +41,18 @@ pub async fn configure_database(config: &DatabaseSettings) -> SqlitePool {
 
 async fn spawn_app() -> TestApp {
     Lazy::force(&TRACING);
-    let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind to random port");
+    let listener = TcpListener::bind("127.0.0.1:0")
+        .expect("Failed to bind to random port");
 
     let port = listener.local_addr().unwrap().port();
     let address = format!("http://127.0.0.1:{}", port);
 
-    let configuration = get_configuration().expect("Failed to read configuration");
+    let configuration =
+        get_configuration().expect("Failed to read configuration");
     let db_pool = configure_database(&configuration.database).await;
 
-    let server = run(listener, db_pool.clone()).expect("Failed to bind to address");
+    let server =
+        run(listener, db_pool.clone()).expect("Failed to bind to address");
 
     let _ = tokio::spawn(server);
 
