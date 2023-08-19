@@ -1,5 +1,4 @@
 use sqlx::sqlite::SqlitePoolOptions;
-use sqlx::SqlitePool;
 use std::net::TcpListener;
 
 use home::configuration::get_configuration;

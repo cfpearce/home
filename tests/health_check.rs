@@ -98,8 +98,8 @@ async fn subscribe_returns_a_200_for_valid_form_data() {
         .await
         .expect("Failed to fetch saved subscription");
 
-    assert_eq!(saved.email, "ursula_le_guin@gmail.com");
-    assert_eq!(saved.name, "le guin");
+    assert_eq!(saved.email, "chris@pearce.com");
+    assert_eq!(saved.name, "Chris");
 }
 
 #[tokio::test]
