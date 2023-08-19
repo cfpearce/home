@@ -1,7 +1,7 @@
 use secrecy::Secret;
 
-const LOCAL: &'static str = "local";
-const PRODUCTION: &'static str = "production";
+const LOCAL: &str = "local";
+const PRODUCTION: &str = "production";
 
 #[derive(serde::Deserialize)]
 pub struct DatabaseSettings {
@@ -78,7 +78,7 @@ pub fn get_configuration() -> Result<Settings, config::ConfigError> {
             configuration_directory.join("base.yaml"),
         ))
         .add_source(config::File::from(
-            configuration_directory.join(&environment_filename),
+            configuration_directory.join(environment_filename),
         ))
         .build()?;
     settings.try_deserialize::<Settings>()
