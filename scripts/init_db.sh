@@ -21,6 +21,8 @@ if [ -f $OFFLINE_FILE ]; then
     rm -f ./${OFFLINE_FILE}
 fi
 
+echo "Creating Database"
+
 sqlx database create
 sqlx migrate run
 cargo sqlx prepare -- --lib

@@ -17,6 +17,8 @@ ENV SQLX_OFFLINE true
 
 RUN cargo build --release --bin home
 
+RUN /app/scripts/init_db.sh
+
 FROM debian:bookworm-slim AS runtime
 
 WORKDIR /app
@@ -27,6 +29,7 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app/target/release/home home
+COPY --from=builder /app/sqlite.db sqlite.db
 COPY configuration configuration
 ENV APP_ENVIRONMENT production
 ENTRYPOINT [ "./home" ]
